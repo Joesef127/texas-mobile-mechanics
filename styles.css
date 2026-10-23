@@ -22,25 +22,6 @@
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #101216;
-    --surface: #181B20;
-    --text: #F1F1EF;
-    --muted: #A0A6AE;
-    --line: #2A2E35;
-    --red: #E5343E;
-    --ink: #14161A;
-    --ink-text: #F4F4F2;
-    --ink-muted: #A5AAB2;
-    --ink-line: #2C3037;
-    --hover: rgba(255, 255, 255, .1);
-    --field: #1D2025;
-    --field-f: #22262C;
-    --foot: #0C0D10;
-  }
-}
-
 :root[data-theme="dark"] {
   --bg: #101216;
   --surface: #181B20;
@@ -195,6 +176,11 @@ header.scrolled {
   max-width: 220px;
   object-fit: contain;
   display: block;
+  transition: filter .2s var(--ease);
+}
+
+:root[data-theme="dark"] .logo-img {
+  filter: invert(1);
 }
 
 nav {

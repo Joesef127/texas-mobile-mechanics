@@ -31,9 +31,7 @@
     }
   }
 
-  setTheme(
-    saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
-  );
+  setTheme(saved || "light");
 
   if (tb) {
     tb.addEventListener("click", function () {
