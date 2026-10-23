@@ -235,8 +235,8 @@ nav a:hover {
 }
 
 .tbtn svg {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
@@ -309,7 +309,7 @@ nav a:hover {
 .video {
   position: relative;
   aspect-ratio: 16/9;
-  border-radius: 6px;
+  border-radius: 10px;
   overflow: hidden;
   background: #0B0C0E;
   border: 1px solid var(--ink-line);
@@ -675,6 +675,104 @@ footer .wrap {
   flex-wrap: wrap;
 }
 
+nav a[aria-current="page"] {
+  color: var(--ink-text);
+  font-weight: 600;
+}
+
+/* warranty / standard plan */
+.plan-card {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--ink-line);
+  border-top: 5px solid var(--red);
+  border-radius: 6px;
+  padding: 36px;
+  display: grid;
+  gap: 22px;
+}
+
+.plan-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.plan-badge {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.plan-head h2 {
+  text-transform: uppercase;
+}
+
+.plan-price {
+  text-align: right;
+  line-height: 1;
+}
+
+.plan-price strong {
+  display: block;
+  font: 800 italic clamp(36px, 4vw, 52px)/1 var(--head);
+  color: var(--red);
+}
+
+.plan-price span {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+
+.plan-lead {
+  font-size: 18px;
+}
+
+.plan-perks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.plan-perks li {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--red);
+  border-radius: 4px;
+  padding: 14px 16px;
+  font: 800 italic 22px/1.1 var(--head);
+  text-transform: uppercase;
+}
+
+.plan-desc {
+  color: var(--muted);
+}
+
+.plan-cta {
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.plan-cta p {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
 /* one page load sequence */
 .in {
   opacity: 0;
@@ -745,6 +843,15 @@ footer .wrap {
   }
   form {
     grid-template-columns: 1fr;
+  }
+  .plan-card {
+    padding: 24px;
+  }
+  .plan-perks {
+    grid-template-columns: 1fr;
+  }
+  .plan-price {
+    text-align: left;
   }
   .btn {
     width: 100%;
