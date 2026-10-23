@@ -256,6 +256,23 @@ nav a:hover {
   display: none;
 }
 
+.menu-btn,
+.nav-call {
+  display: none;
+}
+
+.menu-btn .icon-close {
+  display: none;
+}
+
+header.menu-open .menu-btn .icon-menu {
+  display: none;
+}
+
+header.menu-open .menu-btn .icon-close {
+  display: block;
+}
+
 /* hero */
 .hero {
   background: var(--ink);
@@ -814,8 +831,38 @@ nav a[aria-current="page"] {
 }
 
 @media (max-width: 900px) {
+  .tools .call {
+    display: none;
+  }
+  .menu-btn {
+    display: grid;
+  }
   nav {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--ink);
+    border-bottom: 1px solid var(--ink-line);
+    padding: 12px 24px 24px;
+    flex-direction: column;
+    gap: 0;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .22);
+  }
+  header.menu-open nav {
+    display: flex;
+  }
+  nav a:not(.btn) {
+    padding: 14px 0;
+    font-size: 18px;
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .nav-call {
+    display: inline-flex;
+    width: 100%;
+    margin-top: 16px;
+    color: #fff;
   }
   .hero .wrap, .split, .cgrid {
     grid-template-columns: 1fr;

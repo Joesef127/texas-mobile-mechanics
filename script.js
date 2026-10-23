@@ -43,6 +43,45 @@
     });
   }
 
+  // Mobile hamburger menu toggle
+  var menuBtn = document.getElementById("menu-btn");
+  var nav = document.getElementById("nav");
+
+  function closeMenu() {
+    if (!h || !menuBtn) return;
+    h.classList.remove("menu-open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.setAttribute("aria-label", "Open menu");
+  }
+
+  if (menuBtn && h) {
+    menuBtn.addEventListener("click", function () {
+      var isOpen = h.classList.toggle("menu-open");
+      menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      menuBtn.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    });
+
+    if (nav) {
+      nav.addEventListener("click", function (e) {
+        if (e.target.closest("a")) {
+          closeMenu();
+        }
+      });
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener("click", function (e) {
+      if (h.classList.contains("menu-open") && !h.contains(e.target)) {
+        closeMenu();
+      }
+    });
+  }
+
   // Contact form handler (FormSubmit AJAX with mailto fallback)
   var form = document.getElementById("form");
   if (form) {
