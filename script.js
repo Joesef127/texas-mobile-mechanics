@@ -43,31 +43,75 @@
     });
   }
 
-  // Contact form mailto handler
+  // Contact form handler (FormSubmit AJAX with mailto fallback)
   var form = document.getElementById("form");
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var d = new FormData(e.target);
-      var body =
-        "Name: " +
-        d.get("name") +
-        "\nEmail: " +
-        d.get("email") +
-        "\nPhone: " +
-        (d.get("phone") || "") +
-        "\n\n" +
-        (d.get("message") || "");
+      var d = new FormData(form);
+      if (d.get("_honey")) return;
+
       var sub = d.get("subject") || "Free diagnosis request";
       var note = document.getElementById("note");
-      if (note) {
-        note.textContent = "Opening your email app.";
-      }
-      location.href =
-        "mailto:TexasMobileMechanics@Gmail.com?subject=" +
-        encodeURIComponent(sub) +
-        "&body=" +
-        encodeURIComponent(body);
+      var btn = form.querySelector('button[type="submit"]');
+
+      if (btn) btn.disabled = true;
+      if (note) note.textContent = "Sending message...";
+
+      fetch("https://formsubmit.co/ajax/TexasMobileMechanics@Gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: d.get("name"),
+          email: d.get("email"),
+          phone: d.get("phone") || "Not provided",
+          subject: sub,
+          message: d.get("message") || "",
+          _subject: "New Lead: " + sub,
+          _template: "table",
+          _captcha: "false",
+        }),
+      })
+        .then(function (res) {
+          return res.json().then(function (data) {
+            if (!res.ok || data.success === "false" || data.success === false) {
+              throw new Error(data.message || "Submission failed");
+            }
+            return data;
+          });
+        })
+        .then(function () {
+          if (note) {
+            note.textContent = "Message sent! We'll get back to you shortly.";
+          }
+          form.reset();
+        })
+        .catch(function () {
+          // Fallback to mailto so no customer lead is ever lost
+          var body =
+            "Name: " +
+            d.get("name") +
+            "\nEmail: " +
+            d.get("email") +
+            "\nPhone: " +
+            (d.get("phone") || "") +
+            "\n\n" +
+            (d.get("message") || "");
+          if (note) {
+            note.textContent = "Opening your email app...";
+          }
+          location.href =
+            "mailto:TexasMobileMechanics@Gmail.com?subject=" +
+            encodeURIComponent(sub) +
+            "&body=" +
+            encodeURIComponent(body);
+        })
+        .finally(function () {
+          if (btn) btn.disabled = false;
+        });
     });
   }
 })();
