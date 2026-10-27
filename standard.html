@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Texas Mobile Mechanics | Standard Plan</title>
-<meta name="description" content="Texas Mobile Mechanic Fort Worth Dallas Arlington www.TexMM.com Towing Auto">
+<meta name="description" content="Texas Mobile Mechanic Fort Worth Dallas Arlington www.TexMM.com Texas Extended Auto Coverage Standard, Plus, and Premium Plans">
 <link rel="canonical" href="https://www.texmm.com/standard">
-<meta property="og:title" content="Texas Mobile Mechanics">
+<meta property="og:title" content="Texas Mobile Mechanics | Warranty Plans">
 <meta property="og:description" content="Texas Mobile Mechanic Fort Worth Dallas Arlington www.TexMM.com Towing Auto">
 <meta property="og:url" content="https://www.texmm.com/standard">
 <meta property="og:site_name" content="TexasMobileMechanics">
@@ -14,7 +14,7 @@
 <meta name="google-site-verification" content="TuZ0hQNgJPUGx10A2I6H9L4ttxOBQ8J4V7S_XupZ3Qw">
 <meta name="keywords" content="Assistance, Auto, Car, Mechanic, Mobile, Repair, Roadside, Shop, Towing">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Texas Mobile Mechanics">
+<meta name="twitter:title" content="Texas Mobile Mechanics | Warranty Plans">
 <meta name="twitter:description" content="Texas Mobile Mechanic Fort Worth Dallas Arlington www.TexMM.com Towing Auto">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,11 +31,32 @@
       <img src="TMM_logo.png" alt="Texas Mobile Mechanics" class="logo-img">
     </a>
     <nav id="nav" aria-label="Main">
-      <a href="index.html#services">Services</a>
-      <a href="index.html#process">How it works</a>
-      <a href="index.html#areas">Service area</a>
-      <a href="index.html#contact">Contact</a>
-      <a href="standard.html" aria-current="page">Warranty</a>
+      <a href="services.html">Services</a>
+      <a href="parts.html">Parts</a>
+      <div class="nav-dd">
+        <a href="standard.html" class="nav-dd-trigger" aria-current="page" aria-haspopup="true">
+          Warranty
+          <svg class="dd-caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="nav-dd-menu" role="menu" aria-label="Warranty plans">
+          <a href="standard.html?plan=standard" data-plan-link="standard" aria-current="page" role="menuitem">
+            <strong>Standard Plan</strong>
+            <span>$19.99/mo · Under 30k mi</span>
+          </a>
+          <a href="plus.html?plan=plus" data-plan-link="plus" role="menuitem">
+            <strong>Plus Plan</strong>
+            <span>$29.99/mo · 30k–60k mi</span>
+          </a>
+          <a href="premium.html?plan=premium" data-plan-link="premium" role="menuitem">
+            <strong>Premium Plan</strong>
+            <span>$39.99/mo · New or Used</span>
+          </a>
+        </div>
+      </div>
+      <a href="discounts.html">Discounts</a>
+      <a href="payment-assistance.html">Payment Assistance</a>
+      <a href="about-us.html">About Us</a>
+      <a href="contact-us.html">Contact</a>
       <a class="btn btn-red nav-call" href="tel:+18173822377">Call 817-382-2377</a>
     </nav>
     <div class="tools">
@@ -61,54 +82,197 @@
       <p class="lede in">Texas Mobile Mechanics proudly offers customers an exclusive membership to <strong>Texas Extended Auto Coverage (EAC)</strong>.</p>
       <p class="lede in" style="margin-top:16px">With a one-time membership fee of <strong>$49.99</strong>, Texas EAC provides 3 convenient plans to cover your vehicle. Through extensive time and research, Texas EAC has found the way to save you, the consumer, money. Each category of Automotive Protection is specifically priced and timed according to the abuse a vehicle receives from the average commuter yearly (15,000 miles).</p>
       <div class="actions in">
-        <a class="btn btn-red" href="index.html#contact">Email us</a>
+        <a class="btn btn-red" href="tel:+18173822377">Call 817-382-2377</a>
+        <a class="btn btn-line" href="#contact">Email us</a>
       </div>
     </div>
 
-    <div class="vin">
-      <div class="plan-card" id="standard-plan">
-        <div class="plan-head">
-          <div>
-            <span class="plan-badge">Recommended under 30,000 miles</span>
-            <h2>Standard</h2>
-          </div>
-          <div class="plan-price">
-            <strong>$19.99</strong>
-            <span>a month</span>
-          </div>
+    <div class="vin" id="warranty-plans">
+      <div class="plan-card">
+        <div class="plan-tabs" role="tablist" aria-label="Select Warranty Plan" data-active-index="0" data-default-plan="standard">
+          <span class="plan-tab-glider" aria-hidden="true"></span>
+          <button type="button" role="tab" class="plan-tab is-active" id="tab-standard" aria-selected="true" aria-controls="panel-standard" data-plan="standard" data-index="0">
+            <span class="tab-name">Standard</span>
+            <span class="tab-price">$19.99/mo</span>
+          </button>
+          <button type="button" role="tab" class="plan-tab" id="tab-plus" aria-selected="false" aria-controls="panel-plus" data-plan="plus" data-index="1">
+            <span class="tab-name">Plus</span>
+            <span class="tab-price">$29.99/mo</span>
+          </button>
+          <button type="button" role="tab" class="plan-tab" id="tab-premium" aria-selected="false" aria-controls="panel-premium" data-plan="premium" data-index="2">
+            <span class="tab-name">Premium</span>
+            <span class="tab-price">$39.99/mo</span>
+          </button>
         </div>
 
-        <p class="plan-lead"><strong>STANDARD PLAN</strong> provides you the protection you need! Recommended for Brand New and Lightly Used Vehicles with fewer than 30,000 miles.</p>
+        <div class="plan-panels">
+          <!-- Standard Plan Panel -->
+          <div class="plan-panel is-active" id="panel-standard" role="tabpanel" aria-labelledby="tab-standard" data-plan-panel="standard">
+            <div class="plan-head">
+              <div>
+                <span class="plan-badge">Recommended under 30,000 miles</span>
+                <h2>Standard</h2>
+              </div>
+              <div class="plan-price">
+                <strong>$19.99</strong>
+                <span>a month</span>
+              </div>
+            </div>
 
-        <ul class="plan-perks">
-          <li>20% OFF Total Labor</li>
-          <li>4 Year 0% Deductible</li>
-        </ul>
+            <p class="plan-lead"><strong>STANDARD PLAN</strong> provides you the protection you need! Recommended for Brand New and Lightly Used Vehicles with fewer than 30,000 miles.</p>
 
-        <p class="plan-desc">The Standard Plan is ideal for owners who opted to pass on their dealership’s extended warranty, yet still want the minimum amount of coverage just in case a disaster strikes them.</p>
+            <ul class="plan-perks">
+              <li>20% OFF Total Labor</li>
+              <li>4 Year 0% Deductible</li>
+            </ul>
 
-        <div class="plan-cta">
-          <p>Please text, call, or e-mail a customer service agent so they can help evaluate what service you most likely will need.</p>
-          <div class="actions" style="margin-top:18px">
-            <a class="btn btn-red" href="tel:+18173822377">Call 817-382-2377</a>
-            <a class="btn btn-line" href="sms:+18173822377">Text us</a>
-            <a class="btn btn-line" href="index.html#contact">Email us</a>
+            <p class="plan-desc">The Standard Plan is ideal for owners who opted to pass on their dealership’s extended warranty, yet still want the minimum amount of coverage just in case a disaster strikes them.</p>
+
+            <div class="plan-cta">
+              <p>Please text, call, or e-mail a customer service agent so they can help evaluate what service you most likely will need.</p>
+              <div class="actions" style="margin-top:18px">
+                <a class="btn btn-red" href="tel:+18173822377">Call 817-382-2377</a>
+                <a class="btn btn-line" href="sms:+18173822377">Text us</a>
+                <a class="btn btn-line" href="#contact">Email us</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Plus Plan Panel -->
+          <div class="plan-panel" id="panel-plus" role="tabpanel" aria-labelledby="tab-plus" data-plan-panel="plus" aria-hidden="true">
+            <div class="plan-head">
+              <div>
+                <span class="plan-badge">Mileage between 30,000 and 60,000 miles</span>
+                <h2>Plus</h2>
+              </div>
+              <div class="plan-price">
+                <strong>$29.99</strong>
+                <span>a month</span>
+              </div>
+            </div>
+
+            <p class="plan-lead"><strong>PLUS PLAN</strong> provides you the protection you need for Vehicles with mileage between 30,000 and 60,000 Miles.</p>
+
+            <ul class="plan-perks">
+              <li>35% OFF Total Labor</li>
+              <li>3 Year 0% Deductible</li>
+            </ul>
+
+            <p class="plan-desc">The Plus Plan is suited for someone that doesn’t commute a lot, but still is active and wants to make sure they have average protection rather than none at all.</p>
+
+            <div class="plan-cta">
+              <p>Please text, call, or e-mail a customer service agent so they can help evaluate what service you most likely will need.</p>
+              <div class="actions" style="margin-top:18px">
+                <a class="btn btn-red" href="tel:+18173822377">Call 817-382-2377</a>
+                <a class="btn btn-line" href="sms:+18173822377">Text us</a>
+                <a class="btn btn-line" href="#contact">Email us</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Premium Plan Panel -->
+          <div class="plan-panel" id="panel-premium" role="tabpanel" aria-labelledby="tab-premium" data-plan-panel="premium" aria-hidden="true">
+            <div class="plan-head">
+              <div>
+                <span class="plan-badge">Best coverage · New or used vehicles</span>
+                <h2>Premium</h2>
+              </div>
+              <div class="plan-price">
+                <strong>$39.99</strong>
+                <span>a month</span>
+              </div>
+            </div>
+
+            <p class="plan-lead"><strong>PREMIUM PLAN</strong> provides you the best coverage at the best rate possible if anything were to ever happen to your vehicle NEW or USED.</p>
+
+            <ul class="plan-perks">
+              <li>50% OFF Total Labor</li>
+              <li>Choose Your Benefit<small>2 Year 0% Deductible OR 50% Cash Back Annually</small></li>
+            </ul>
+
+            <p class="plan-desc">With the Premium Plan you have the option of a 50% Cash Back Annually. However, if you select this feature you <strong>DO NOT</strong> get to collect a 0% Deductible after being a committed member for 2 years.</p>
+
+            <div class="plan-cta">
+              <p>Please text, call, or e-mail a customer service agent so they can help evaluate what service you most likely will need.</p>
+              <div class="actions" style="margin-top:18px">
+                <a class="btn btn-red" href="tel:+18173822377">Call 817-382-2377</a>
+                <a class="btn btn-line" href="sms:+18173822377">Text us</a>
+                <a class="btn btn-line" href="#contact">Email us</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<section id="areas">
+  <div class="wrap split">
+    <div>
+      <h2>See how we work.</h2>
+      <p style="margin-top:16px;color:var(--muted);font-size:19px;margin-bottom:24px">Mobile auto repair and maintenance delivered straight to your driveway or workplace across DFW.</p>
+      <div class="video">
+        <div id="my-youtube-video"></div>
+      </div>
+    </div>
+    <div>
+      <h2>Read what customers say.</h2>
+      <p style="margin-top:16px;color:var(--muted);font-size:19px">Verified customer reviews across the Dallas–Fort Worth metroplex.</p>
+      <div class="rev">
+        <a href="https://www.yelp.com/biz/texas-mobile-mechanics-fort-worth-2" target="_blank" rel="noopener">Yelp <span>Read reviews</span></a>
+        <a href="https://www.angi.com/companylist/us/tx/fort-worth/texas-mobile-mechanics-reviews-6454329.htm" target="_blank" rel="noopener">Angi <span>Read reviews</span></a>
+      </div>
+      <div class="areas" style="margin-top:28px"><span>Dallas</span><span>Fort Worth</span><span>Arlington</span><span>Surrounding cities</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap cgrid">
+    <div class="info">
+      <div class="head" style="margin-bottom:32px"><h2>Get your free diagnosis.</h2></div>
+      <a href="tel:+18173822377">817-382-2377</a>
+      <p>Call or text · Mon–Sun: 9:30am – 12am Midnight</p>
+      <a href="mailto:TexasMobileMechanics@Gmail.com" style="font-size:clamp(22px,2.6vw,30px);word-break:break-all">TexasMobileMechanics@Gmail.com</a>
+      <div class="social">
+        <a href="https://www.facebook.com/texasmobilemechanic/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg class="f" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://x.com/texasmobilemech" target="_blank" rel="noopener" aria-label="X" title="X"><svg class="f" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.instagram.com/texasmobilemechanics/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg class="s" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
+        <a href="https://www.yelp.com/biz/texas-mobile-mechanics-fort-worth-2" target="_blank" rel="noopener" aria-label="Yelp" title="Yelp"><svg class="s" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width:2.6"><path d="M12 12V3M12 12l7-6M12 12l9 1M12 12l4 8M12 12l-4 8"/></svg></a>
+        <a href="https://www.angi.com/companylist/us/tx/fort-worth/texas-mobile-mechanics-reviews-6454329.htm" target="_blank" rel="noopener" aria-label="Angi" title="Angi"><svg class="f" viewBox="0 0 24 24" aria-hidden="true"><text x="12" y="18" text-anchor="middle" font-size="20" font-weight="800" font-family="Arial,Helvetica,sans-serif">a</text></svg></a>
+      </div>
+    </div>
+    <form id="form">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <label>Name<input name="name" required autocomplete="name"></label>
+      <label>Email<input name="email" type="email" required autocomplete="email"></label>
+      <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
+      <label>Subject<input name="subject" placeholder="Car make, model and year"></label>
+      <label class="full">Message<textarea name="message" placeholder="What is your car doing?"></textarea></label>
+      <button class="btn btn-red" type="submit">Send message</button>
+      <p class="note" id="note" role="status"></p>
+    </form>
+  </div>
+</section>
 </main>
 
 <footer>
   <div class="wrap">
     <span>© <span id="yr">2026</span> Texas Mobile Mechanics Inc.</span>
-    <span><a href="index.html">Home</a> · Dallas, Fort Worth, Arlington</span>
+    <div class="foot-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="parts.html">Parts</a>
+      <a href="standard.html">Warranty</a>
+      <a href="discounts.html">Discounts</a>
+      <a href="payment-assistance.html">Payment Assistance</a>
+      <a href="about-us.html">About Us</a>
+      <a href="contact-us.html">Contact</a>
+    </div>
   </div>
 </footer>
 
 <script src="script.js"></script>
 </body>
 </html>
-
