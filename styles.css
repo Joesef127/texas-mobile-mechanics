@@ -617,33 +617,57 @@ section {
 
 .rev {
   display: grid;
-  gap: 12px;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
   margin-top: 28px;
 }
 
 .rev a {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
-  padding: 20px 24px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--bg);
   text-decoration: none;
-  font-weight: 600;
-  font-size: 18px;
-  transition: border-color .2s var(--ease), transform .2s var(--ease);
 }
 
 .rev a:hover {
-  border-color: var(--red);
-  transform: translateX(4px);
+  transform: translateY(-2px);
 }
 
-.rev span {
-  color: var(--muted);
-  font-weight: 400;
-  font-size: 15px;
+.rev a img {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  max-height: 68px;
+  height: auto;
+  object-fit: contain;
+}
+
+.rev-contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+  margin-bottom: 16px;
+}
+
+.rev-contact a {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  text-decoration: none;
+}
+
+.rev-contact a:hover {
+  transform: translateY(-2px);
+}
+
+.rev-contact a img {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  max-height: 46px;
+  height: auto;
+  object-fit: contain;
 }
 
 /* contact */
@@ -1471,7 +1495,7 @@ nav a[aria-current="page"],
   .wrap {
     width: min(1160px, 100% - 32px);
   }
-  form, .service-checklist, .parts-grid, .term-grid {
+  form, .service-checklist, .parts-grid, .term-grid, .rev-contact {
     grid-template-columns: 1fr;
   }
   .plan-card, .service-cat, .match-card, .quote-card, .coupon-card {
