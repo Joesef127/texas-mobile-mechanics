@@ -26,7 +26,7 @@ export function HeroShell({
                     </div>
                 </div>
             ) : (
-                <div className="wrap grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr] gap-10 md:gap-14 items-center">
+                <div className="wrap grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
                     <div>{leftColumn}</div>
                     <div id={rightId} className="vin h-full rounded-2xl">
                         {rightColumn}

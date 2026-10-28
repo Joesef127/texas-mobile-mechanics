@@ -18,7 +18,13 @@ export function VideoAndReviewsSection({
         alternateBg ? "bg-surface border-y border-line" : ""
       }`.trim()}
     >
-      <div className="wrap grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
+      <div
+        className={`wrap grid grid-cols-1 ${
+          includeVideo
+            ? "md:grid-cols-2 gap-10 md:gap-12"
+            : "md:grid-cols-2 gap-10 md:gap-16"
+        } items-start`}
+      >
         {includeVideo ? (
           <div>
             <h2>See how we work.</h2>

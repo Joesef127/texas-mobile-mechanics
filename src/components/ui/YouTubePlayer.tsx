@@ -16,7 +16,7 @@ export function YouTubePlayer({
 
   return (
     <div
-      className={`relative aspect-video rounded-[10px] overflow-hidden bg-[#0B0C0E] border border-ink-line [&_iframe]:absolute [&_iframe]:inset-0 [&_iframe]:w-full [&_iframe]:h-full [&_iframe]:border-0 [&_iframe]:block ${className}`.trim()}
+      className={`relative w-full h-full min-h-[250px] sm:min-h-[320px] md:min-h-[380px] aspect-video rounded-xl overflow-hidden bg-[#0B0C0E] border border-ink-line [&_iframe]:absolute [&_iframe]:inset-0 [&_iframe]:w-full [&_iframe]:h-full [&_iframe]:border-0 [&_iframe]:block ${className}`.trim()}
     >
       <div ref={containerRef} className="w-full h-full" />
     </div>
