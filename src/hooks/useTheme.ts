@@ -8,6 +8,15 @@ export function useTheme() {
   const [theme, setThemeState] = useState<ThemeMode>("light");
 
   useEffect(() => {
+    const current = document.documentElement.getAttribute(
+      "data-theme"
+    ) as ThemeMode | null;
+
+    if (current === "dark" || current === "light") {
+      setThemeState(current);
+      return;
+    }
+
     let saved: ThemeMode | null = null;
     try {
       const val = localStorage.getItem("tmm-theme");

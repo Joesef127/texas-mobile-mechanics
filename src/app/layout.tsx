@@ -91,6 +91,8 @@ const webSiteSchema = {
   url: siteConfig.domain,
 };
 
+const themeScript = `(function(){try{var t=localStorage.getItem("tmm-theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);}else{document.documentElement.setAttribute("data-theme","light");}}catch(e){document.documentElement.setAttribute("data-theme","light");}})();`;
+
 export default function RootLayout({
   children,
 }: {
@@ -99,11 +101,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="light"
       suppressHydrationWarning
       className={`${barlow.variable} ${barlowCondensed.variable}`}
     >
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: themeScript,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

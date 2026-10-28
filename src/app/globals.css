@@ -85,6 +85,23 @@
   filter: invert(1);
 }
 
+/* Theme toggle icon state driven by data-theme attribute */
+.theme-icon-sun {
+  display: none;
+}
+
+.theme-icon-moon {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-icon-sun {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(88px + env(safe-area-inset-top, 0px));
