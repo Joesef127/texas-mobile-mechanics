@@ -5,6 +5,9 @@ interface HeroShellProps {
     rightColumn: ReactNode;
     rightId?: string;
     isWarrantyPage?: boolean;
+    isHomePage?: boolean;
+    /** Full-width row under both columns. Used by the home hero for the proof ledger. */
+    bottomRow?: ReactNode;
 }
 
 export function HeroShell({
@@ -12,7 +15,34 @@ export function HeroShell({
     rightColumn,
     rightId,
     isWarrantyPage = false,
+    isHomePage = false,
+    bottomRow,
 }: HeroShellProps) {
+    if (isHomePage) {
+        return (
+            <div className="bg-ink text-ink-text pt-12 md:pt-20">
+                <div className="wrap grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+                    <div>{leftColumn}</div>
+                    <div id={rightId} className="relative isolate">
+                        {rightColumn}
+                    </div>
+                </div>
+                {bottomRow ? (
+                    <div className="wrap mt-14 md:mt-20 pb-16 md:pb-20">
+                        {bottomRow}
+                    </div>
+                ) : (
+                    <div className="pb-12 md:pb-16" />
+                )}
+                {/* Center line of a road. Echoes the logo. Used once. */}
+                <div
+                    aria-hidden
+                    className="border-t-[3px] border-dashed border-brand-red"
+                />
+            </div>
+        );
+    }
+
     return (
         <div className="bg-ink text-ink-text pt-12 pb-16 md:pt-[72px] md:pb-[88px]">
             {isWarrantyPage ? (
