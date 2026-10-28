@@ -1,13 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export function useMobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   const closeMenu = useCallback(() => {
     setIsOpen(false);
@@ -17,10 +16,10 @@ export function useMobileMenu() {
     setIsOpen((prev) => !prev);
   }, []);
 
-  // Close mobile menu when route or query params change
+  // Close mobile menu when route changes
   useEffect(() => {
     closeMenu();
-  }, [pathname, searchParams, closeMenu]);
+  }, [pathname, closeMenu]);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {

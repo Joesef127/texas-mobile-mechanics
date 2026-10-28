@@ -25,6 +25,10 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
+    { media: "(prefers-color-scheme: dark)", color: "#14161A" },
+  ],
 };
 
 export const metadata: Metadata = {
@@ -91,7 +95,33 @@ const webSiteSchema = {
   url: siteConfig.domain,
 };
 
-const themeScript = `(function(){try{var t=localStorage.getItem("tmm-theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);}else{document.documentElement.setAttribute("data-theme","light");}}catch(e){document.documentElement.setAttribute("data-theme","light");}})();`;
+const themeScript = `(function(){try{var d=document.documentElement,t=localStorage.getItem("tmm-theme"),dark=t==="dark"||(!t&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(dark){d.setAttribute("data-theme","dark");d.style.colorScheme="dark";d.style.backgroundColor="#101216";}else{d.setAttribute("data-theme","light");d.style.colorScheme="light";d.style.backgroundColor="#F6F6F4";}}catch(e){}})();`;
+
+const criticalThemeStyle = `
+html {
+  background-color: #F6F6F4;
+  color: #16181C;
+  color-scheme: light;
+}
+html[data-theme="dark"] {
+  background-color: #101216 !important;
+  color: #F1F1EF !important;
+  color-scheme: dark !important;
+  --bg: #101216;
+  --surface: #181B20;
+  --text: #F1F1EF;
+  --ink: #14161A;
+  --ink-text: #F4F4F2;
+  --ink-line: #2C3037;
+}
+html[data-theme="dark"] body {
+  background-color: #101216 !important;
+  color: #F1F1EF !important;
+}
+html[data-theme="dark"] .logo-img {
+  filter: invert(1);
+}
+`;
 
 export default function RootLayout({
   children,
@@ -110,6 +140,11 @@ export default function RootLayout({
             __html: themeScript,
           }}
         />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: criticalThemeStyle,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -124,6 +159,11 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: themeScript,
+          }}
+        />
         <Header />
         <main>
           {children}

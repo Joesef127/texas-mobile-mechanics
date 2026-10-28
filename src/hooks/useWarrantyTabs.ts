@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState, KeyboardEvent } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { WarrantyPlanKey } from "@/types";
 import { warrantyPlanOrder } from "@/data/warrantyPlans";
 
@@ -13,18 +13,17 @@ const planTitles: Record<WarrantyPlanKey, string> = {
 
 export function useWarrantyTabs(defaultPlan: WarrantyPlanKey = "standard") {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [activePlan, setActivePlan] = useState<WarrantyPlanKey>(defaultPlan);
 
   const resolvePlanFromLocation = useCallback((): WarrantyPlanKey => {
-    const queryPlan = searchParams?.get("plan")?.toLowerCase() as
-      | WarrantyPlanKey
-      | undefined;
-    if (queryPlan && warrantyPlanOrder.includes(queryPlan)) {
-      return queryPlan;
-    }
-
     if (typeof window !== "undefined") {
+      const queryPlan = new URLSearchParams(window.location.search)
+        .get("plan")
+        ?.toLowerCase() as WarrantyPlanKey | undefined;
+      if (queryPlan && warrantyPlanOrder.includes(queryPlan)) {
+        return queryPlan;
+      }
+
       const hash = window.location.hash
         .replace(/^#/, "")
         .toLowerCase() as WarrantyPlanKey;
@@ -39,7 +38,7 @@ export function useWarrantyTabs(defaultPlan: WarrantyPlanKey = "standard") {
     if (lowerPath.includes("standard")) return "standard";
 
     return defaultPlan;
-  }, [searchParams, pathname, defaultPlan]);
+  }, [pathname, defaultPlan]);
 
   useEffect(() => {
     const detected = resolvePlanFromLocation();

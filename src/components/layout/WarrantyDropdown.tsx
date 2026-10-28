@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { warrantyDropdownItems } from "@/data/navigation";
 
 interface WarrantyDropdownProps {
@@ -15,7 +15,6 @@ export function WarrantyDropdown({
   isMobileMenuOpen,
 }: WarrantyDropdownProps) {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [isExpanded, setIsExpanded] = useState(false);
 
   const isWarrantyRoute =
@@ -23,11 +22,9 @@ export function WarrantyDropdown({
     pathname === "/plus" ||
     pathname === "/premium";
 
-  const activePlanParam = searchParams?.get("plan")?.toLowerCase();
-
   useEffect(() => {
     setIsExpanded(false);
-  }, [pathname, searchParams, isMobileMenuOpen]);
+  }, [pathname, isMobileMenuOpen]);
 
   return (
     <div className="group relative flex flex-col nav:flex-row items-stretch nav:items-center">
@@ -83,9 +80,7 @@ export function WarrantyDropdown({
       >
         {warrantyDropdownItems.map((item) => {
           const isItemActive =
-            isWarrantyRoute &&
-            (activePlanParam === item.key ||
-              (!activePlanParam && pathname === `/${item.key}`));
+            pathname === item.href || pathname === `/${item.key}`;
 
           return (
             <Link

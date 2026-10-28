@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Suspense } from "react";
 import { mainNavItems } from "@/data/navigation";
 import { siteConfig } from "@/data/siteConfig";
 import { useScrolledHeader } from "@/hooks/useScrolledHeader";
@@ -10,7 +9,7 @@ import { useMobileMenu } from "@/hooks/useMobileMenu";
 import { ThemeToggleButton } from "./ThemeToggleButton";
 import { WarrantyDropdown } from "./WarrantyDropdown";
 
-function HeaderInner() {
+export function Header() {
   const pathname = usePathname();
   const scrolled = useScrolledHeader(8);
   const { isOpen, closeMenu, toggleMenu, headerRef } = useMobileMenu();
@@ -32,7 +31,7 @@ function HeaderInner() {
           <img
             src="/TMM_logo.png"
             alt={siteConfig.name}
-            className="logo-img h-[38px] max-w-[170px] xs:h-[48px] xs:max-w-[220px] w-auto object-contain block transition-[filter] duration-200 ease-brand"
+            className="logo-img h-[38px] max-w-[170px] xs:h-[48px] xs:max-w-[220px] w-auto object-contain block"
           />
         </Link>
 
@@ -123,13 +122,5 @@ function HeaderInner() {
         </div>
       </div>
     </header>
-  );
-}
-
-export function Header() {
-  return (
-    <Suspense fallback={<div className="h-[72px] bg-ink border-b border-ink-line" />}>
-      <HeaderInner />
-    </Suspense>
   );
 }

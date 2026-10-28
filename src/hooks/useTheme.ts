@@ -14,6 +14,9 @@ export function useTheme() {
 
     if (current === "dark" || current === "light") {
       setThemeState(current);
+      document.documentElement.style.colorScheme = current;
+      document.documentElement.style.backgroundColor =
+        current === "dark" ? "#101216" : "#F6F6F4";
       return;
     }
 
@@ -29,12 +32,18 @@ export function useTheme() {
     const initial = saved || "light";
     setThemeState(initial);
     document.documentElement.setAttribute("data-theme", initial);
+    document.documentElement.style.colorScheme = initial;
+    document.documentElement.style.backgroundColor =
+      initial === "dark" ? "#101216" : "#F6F6F4";
   }, []);
 
   const toggleTheme = useCallback(() => {
     setThemeState((prev) => {
       const next: ThemeMode = prev === "dark" ? "light" : "dark";
       document.documentElement.setAttribute("data-theme", next);
+      document.documentElement.style.colorScheme = next;
+      document.documentElement.style.backgroundColor =
+        next === "dark" ? "#101216" : "#F6F6F4";
       try {
         localStorage.setItem("tmm-theme", next);
       } catch {
