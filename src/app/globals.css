@@ -1,6 +1,46 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+
+  --color-brand-red: var(--red);
+  --color-brand-redDark: var(--red-d);
+  --color-brand-red-dark: var(--red-d);
+
+  --color-ink: var(--ink);
+  --color-ink-text: var(--ink-text);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-line: var(--ink-line);
+
+  --color-hover: var(--hover);
+
+  --color-field: var(--field);
+  --color-field-focus: var(--field-f);
+
+  --color-foot: var(--foot);
+
+  --font-head: var(--font-head), "Arial Narrow", Arial, sans-serif;
+  --font-body: var(--font-body), "Helvetica Neue", Arial, sans-serif;
+
+  --ease-brand: cubic-bezier(0.22, 0.8, 0.3, 1);
+
+  --breakpoint-xs: 560px;
+  --breakpoint-md: 900px;
+  --breakpoint-nav: 1060px;
+}
+
+@utility wrap {
+  width: min(1240px, 100% - 48px);
+  margin-inline: auto;
+
+  @media (max-width: 560px) {
+    width: min(1160px, 100% - 32px);
+  }
+}
 
 :root {
   --bg: #F6F6F4;
@@ -70,19 +110,6 @@ body::before {
 :focus-visible {
   outline: 3px solid var(--red);
   outline-offset: 3px;
-}
-
-@layer components {
-  .wrap {
-    width: min(1240px, 100% - 48px);
-    margin-inline: auto;
-  }
-
-  @media (max-width: 560px) {
-    .wrap {
-      width: min(1160px, 100% - 32px);
-    }
-  }
 }
 
 h1, h2, h3 {
